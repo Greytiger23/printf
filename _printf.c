@@ -24,22 +24,16 @@ a++;
 switch (format[a])
 {
 case 'c':
-{
 b = va_arg(ap, int);
 printf("%c", b);
 break;
-}
 case 's':
-{
 char *i = va_arg(ap, char *);
 printf("%s", i);
 break;
-}
 case '%':
-{
 printf("%%");
 break;
-}
 default:
 {
 printf("%c", format[a]);
