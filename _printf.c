@@ -12,9 +12,9 @@
 int _printf(const char *format, ...)
 {
 va_list ap;
-int a, b, x;
+int a, b, x = 0;
+char *i;
 a = 0;
-x = 0;
 va_start(ap, format);
 while (format[a])
 {
@@ -28,7 +28,7 @@ b = va_arg(ap, int);
 printf("%c", b);
 break;
 case 's':
-char *i = va_arg(ap, char *);
+i = va_arg(ap, char *);
 printf("%s", i);
 break;
 case '%':
