@@ -12,34 +12,39 @@
 int _printf(const char *format, ...)
 {
 va_list ap;
-int a = 0, b, i;
-char *x;
+int a = 0;
+char *s;
 va_start(ap, format);
-b = strlen(format);
-while (format[a])
-{
-if (format[a] == '%' && a < b)
-{
-a++;
-switch (format[a])
-{
+while (*format) {
+if (*format == '%') {
+format++;
+switch (*format) {
 case 'c':
-i = va_arg(ap, int);
-printf("%c", i);
+printf("%c", va_arg(ap, int));
+a++;
 break;
 case 's':
-x = va_arg(ap, char *);
-printf("%s", x);
+s = va_arg(ap, char *);
+while (*s) {
+printf("%s", s);
+s++;
+a++;
 break;
 case '%':
 printf("%%");
+a++;
 break;
 default:
-printf("%c", format[a]);
 break;
 }
 }
+}
+else 
+{
+putchar(*format);
 a++;
+}
+format++;
 }
 va_end(ap);
 return (a);
