@@ -11,41 +11,37 @@
 
 int _printf(const char *format, ...)
 {
+int a = 0, x = 0, i, y;
+char *b;
 va_list ap;
-int a = 0;
-char *s;
-va_start(ap, format);
-while (*format) {
-if (*format == '%') {
-format++;
-switch (*format) {
+while (format[a]) {
+if (format[a] == '%') {
+a++;
+switch (format[a]) {
 case 'c':
 printf("%c", va_arg(ap, int));
-a++;
+x++;
 break;
 case 's':
-s = va_arg(ap, char *);
-while (*s) {
-printf("%s", s);
-s++;
-a++;
+b = va_arg(ap, char *);
+printf("%s", b);
+x++;
 break;
 case '%':
 printf("%%");
-a++;
+x++;
+break;
+case 'd': case 'i':
+i = width(format, &a);
+y = pre(format, &a);
+x += printf("%*.*d", i, y, va_arg(ap, int));
 break;
 default:
-break;
-}
-}
-}
-else 
-{
-putchar(*format);
 a++;
+x++;
+continue; }
 }
-format++;
-}
+a++; }
 va_end(ap);
-return (a);
+return (x);
 }
