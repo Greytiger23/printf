@@ -17,7 +17,8 @@ while (format[a])
 if (format[a] == '%')
 {
 a++;
-if (format[a] == '-') {
+if (format[a] == '-')
+{
 flag = 1;
 a++; }
 }
@@ -29,7 +30,8 @@ return (flag);
  * @format: char array
  * Return: void
  */
-int width(const char *format, ...) {
+int width(const char *format, ...)
+{
 int width, a;
 width = 0;
 while (format[a])
@@ -37,7 +39,8 @@ while (format[a])
 if (format[a] == '%')
 {
 a++;
-while (format[a] >= '0' && format[a] <= '9') {
+while (format[a] >= '0' && format[a] <= '9')
+{
 width = width * 10 + (format[a] - '0');
 a++; }
 }
@@ -49,7 +52,8 @@ return (width);
  * @format: char array
  * Return: void
  */
-int pre(const char *format, ...) {
+int pre(const char *format, ...)
+{
 int pre, a;
 pre = -1;
 a = 0;
@@ -58,14 +62,29 @@ while (format[a])
 if (format[a] == '%')
 {
 a++;
-if (format[a] == '.') {
+if (format[a] == '.')
+{
 a++;
 pre = 0;
-while (format[a] >= '0' && format[a] <= '9') {
+while (format[a] >= '0' && format[a] <= '9')
+{
 pre = pre * 10 + (format[a] - '0');
 a++; }
 }
 }
 a++; }
 return (pre);
+}
+/**
+ * binary - function that prints binary
+ * @n: unsigned int
+ * Return: void
+ */
+void binary(unsigned int n)
+{
+if (n > 1)
+{
+binary(n / 2);
+}
+putchar('0' + (n % 2));
 }

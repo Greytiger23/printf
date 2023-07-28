@@ -14,10 +14,14 @@ int _printf(const char *format, ...)
 int a = 0, x = 0, i, y;
 char *b;
 va_list ap;
-while (format[a]) {
-if (format[a] == '%') {
+va_start(ap, format);
+while (format[a])
+{
+if (format[a] == '%')
+{
 a++;
-switch (format[a]) {
+switch (format[a])
+{
 case 'c':
 printf("%c", va_arg(ap, int));
 x++;
