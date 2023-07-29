@@ -1,20 +1,19 @@
 #include "main.h"
 #include <stdio.h>
+#include <stdarg.h>
 
 /**
  * flag - function that prints the specifiers
  * @format: char array
- * @a: integer
+ * @x: integer
  * Return: void
  */
 
-int flag(const char *format, int a)
+int flag(const char *format, int x)
 {
-int x, flag;
-va_list ap;
+int flag;
 flag = 0;
 x = 0;
-va_start(ap, format);
 while (format[x])
 {
 if (format[x] == '%')
@@ -25,23 +24,21 @@ if (format[x] == '-')
 flag = 1;
 x++; }
 }
-x++; }
-va_end(ap);
+x++;
+}
 return (flag);
 }
 /**
  * width - function that prints the specifiers
  * @format: char array
- * @a: integer
+ * @x: integer
  * Return: void
  */
-int width(const char *format, int a)
+int width(const char *format, int x)
 {
-int width, x;
-va_list ap;
+int width;
 x = 0;
 width = 0;
-va_start(ap, format);
 while (format[x])
 {
 if (format[x] == '%')
@@ -53,21 +50,19 @@ width = width * 10 + (format[x] - '0');
 x++; }
 }
 x++; }
-va_end(ap);
 return (width);
 }
 /**
  * pre - function that prints the specifiers
  * @format: char array
+ * @x: integer
  * Return: void
  */
-int pre(const char *format, int a)
+int pre(const char *format, int x)
 {
-va_list ap;
-int pre, x;
+int pre;
 pre = -1;
 x = 0;
-va_start(ap, format);
 while (format[x])
 {
 if (format[x] == '%')
@@ -75,7 +70,6 @@ if (format[x] == '%')
 x++;
 if (format[x] == '.')
 {
-x++;
 pre = 0;
 while (format[x] >= '0' && format[x] <= '9')
 {
@@ -84,7 +78,6 @@ x++; }
 }
 }
 x++; }
-va_end(ap);
 return (pre);
 }
 /**
