@@ -11,7 +11,7 @@
 
 int _printf(const char *format, ...)
 {
-int a = 0, x = 0, i, y;
+int a = 0, x = 0;
 char *b;
 va_list ap;
 va_start(ap, format);
@@ -35,10 +35,9 @@ case '%':
 printf("%%");
 x++;
 break;
-case 'd': case 'i':
-i = width(format, &a);
-y = pre(format, &a);
-x += printf("%*.*d", i, y, va_arg(ap, int));
+case 'd':
+case 'i':
+x += printf("%d", va_arg(ap, int));
 break;
 default:
 a++;
