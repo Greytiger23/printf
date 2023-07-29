@@ -23,22 +23,22 @@ a++;
 switch (format[a])
 {
 case 'c':
-printf("%c", va_arg(ap, int));
+_printf("%c", va_arg(ap, int));
 x++;
 break;
 case 's':
 b = va_arg(ap, char *);
-printf("%s", b);
+_printf("%s", b);
 x++;
 break;
 case '%':
-printf("%%");
+_printf("%%");
 x++;
 break;
 case 'd': case 'i':
 i = width(format, &a);
 y = pre(format, &a);
-x += printf("%*.*d", i, y, va_arg(ap, int));
+x += _printf("%*.*d", i, y, va_arg(ap, int));
 break;
 default:
 a++;
@@ -47,5 +47,5 @@ continue; }
 }
 a++; }
 va_end(ap);
-return (x);
+return (a);
 }
