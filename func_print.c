@@ -4,47 +4,56 @@
 /**
  * flag - function that prints the specifiers
  * @format: char array
+ * @a: integer
  * Return: void
  */
 
-int flag(const char *format, ...)
+int flag(const char *format, int a)
 {
-int a, flag;
+int x, flag;
+va_list ap;
 flag = 0;
-a = 0;
-while (format[a])
+x = 0;
+va_start(ap, format);
+while (format[x])
 {
-if (format[a] == '%')
+if (format[x] == '%')
 {
-a++;
-if (format[a] == '-')
+x++;
+if (format[x] == '-')
 {
 flag = 1;
-a++; }
+x++; }
 }
-a++; }
+x++; }
+va_end(ap);
 return (flag);
 }
 /**
  * width - function that prints the specifiers
  * @format: char array
+ * @a: integer
  * Return: void
  */
-int width(const char *format, ...)
+int width(const char *format, int a)
 {
-int width, a;
+int width, x;
+va_list ap;
+x = 0;
 width = 0;
-while (format[a])
+va_start(ap, format);
+while (format[x])
 {
-if (format[a] == '%')
+if (format[x] == '%')
 {
-a++;
-while (format[a] >= '0' && format[a] <= '9')
+x++;
+while (format[x] >= '0' && format[x] <= '9')
 {
-width = width * 10 + (format[a] - '0');
-a++; }
+width = width * 10 + (format[x] - '0');
+x++; }
 }
-a++; }
+x++; }
+va_end(ap);
 return (width);
 }
 /**
@@ -52,27 +61,30 @@ return (width);
  * @format: char array
  * Return: void
  */
-int pre(const char *format, ...)
+int pre(const char *format, int a)
 {
-int pre, a;
+va_list ap;
+int pre, x;
 pre = -1;
-a = 0;
-while (format[a])
+x = 0;
+va_start(ap, format);
+while (format[x])
 {
-if (format[a] == '%')
+if (format[x] == '%')
 {
-a++;
-if (format[a] == '.')
+x++;
+if (format[x] == '.')
 {
-a++;
+x++;
 pre = 0;
-while (format[a] >= '0' && format[a] <= '9')
+while (format[x] >= '0' && format[x] <= '9')
 {
-pre = pre * 10 + (format[a] - '0');
-a++; }
+pre = pre * 10 + (format[x] - '0');
+x++; }
 }
 }
-a++; }
+x++; }
+va_end(ap);
 return (pre);
 }
 /**
