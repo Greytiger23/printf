@@ -88,9 +88,41 @@ return (pre);
  */
 void binary(unsigned int n)
 {
+unsigned int a = 0;
 if (n > 1)
 {
 binary(n / 2);
 }
-putchar('0' + (n % 2));
+a = a + (n % 2);
+_printf("%d", a);
+}
+/**
+ * str - function that prints string
+ * @format: char array
+ * @s: char
+ * Return: void
+ */
+char str(const char *format, char s)
+{
+int x = 0;
+while (format[x])
+{
+if (format[x] == '%')
+{
+x++;
+if (format[x] == 'S')
+{
+if (s >= 32 && s < 127)
+{
+_printf("%s", s);
+x++; }
+else
+{
+_printf("\\x%02X", s);
+x += 4; }
+}
+}
+x++;
+}
+return (s);
 }
