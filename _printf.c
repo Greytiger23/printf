@@ -37,10 +37,10 @@ case 'i':
 printf("%d", va_arg(ap, int));
 break;
 default:
-putchar(*format);
-format++;
-continue; }
+a++;
+break; }
 }
+putchar(format[a]);
 a++; }
 va_end(ap);
 return (a);

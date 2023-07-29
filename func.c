@@ -70,6 +70,7 @@ if (format[x] == '%')
 x++;
 if (format[x] == '.')
 {
+x++;
 pre = 0;
 while (format[x] >= '0' && format[x] <= '9')
 {
